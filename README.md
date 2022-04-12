@@ -9,4 +9,4 @@ Lab exercise 4 in this link https://dspfirst.gatech.edu/chapters/07dtft/labs/DTM
 2) S-6: FIR Filter Design GUI
 Lab exercise 2 in this link: https://dspfirst.gatech.edu/chapters/07dtft/labs/FIRfilterDesign/FIRfilterDesign.pdf
 
-All code for (1) is in the directory DTMF_Decoding. All code for (2) is in the directory Filter_Design_GUI.
+All code for (1) is in the directory LabP13_Exercise4. All code for (2) is in the directory LabS6_Exercise2.
