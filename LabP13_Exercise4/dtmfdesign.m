@@ -1,5 +1,3 @@
-
-
 function  hh = dtmfdesign(fb, L, fs)
 %DTMFDESIGN
 %  hh = dtmfdesign(fb, L, fs)
@@ -11,38 +9,28 @@ function  hh = dtmfdesign(fb, L, fs)
 % Each BPF must be scaled so that its frequency response has a
 %  maximum magnitude equal to one.
 
-beta = 1;
-n = 0:L-1;
-h = beta * cos((2*pi.*fb.*n)/(fs)); % figure this out
+    % preallocate space to store the bandpass filters
+    hh = zeros(L, length(fb));
 
-wb = fb * 2*pi;
+    % define constants outside of the for loop
+    n = 0:L-1;
+    w = (0:1/fs:pi);
 
-w = (wb-pi:(1/fs):wb+pi);
+    % create the badnapss filter for each frequency in fb
+    for i = 1:length(fb)
 
+        % create a bandpass filter
+        % note: center freq wb = (fb / fs) * 2*pi;
+        f = fb(i);
+        h = cos((2*pi.*f.*n)/(fs)); 
 
-H = freqz(h, 1, w);
+        % compute magnitude response of bandpass filter
+        H = freqz(h, 1, w);
+        % compute scaling factor to get a maximum gain of 1
+        beta = 1 / max(abs(H));
 
-% fac = max(abs(H));
-% beta = 1 / fac;
-% 
-% h = beta * cos((2*pi.*fb.*n)./fs);
-% H = freqz(h, 1, w);
-
-%H = DTFT(h, w);
-
-
-figure, plot(w/(2*pi),abs(H))
-
-hh = H;
-end
-
-% Compute the DTFT of a given sequence
-function X = DTFT(x, w)
-    X = 0;
-    N = length(x);
-    % compute the DTFT
-    for n = 0:N-1
-        n_ind = n + 1;
-        X = x(n_ind) * exp(-1j.*w *n) + X;
+        % scale the filter and store it
+        h = beta .* h;
+        hh(:,i) = h;
     end
 end
