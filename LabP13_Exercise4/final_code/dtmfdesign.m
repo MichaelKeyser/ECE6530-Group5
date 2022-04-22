@@ -9,28 +9,27 @@ function  hh = dtmfdesign(fb, L, fs)
 % Each BPF must be scaled so that its frequency response has a
 %  maximum magnitude equal to one.
 
-    % preallocate space to store the bandpass filters
-    hh = zeros(L, length(fb));
+% preallocate space to store the bandpass filters
+hh = zeros(L, length(fb));
 
-    % define constants outside of the for loop
-    n = 0:L-1;
-    w = (0:1/fs:pi);
+% define constants outside of the for loop
+n = 0:L-1;
+w = (0:1/fs:pi);
 
-    % create the badnapss filter for each frequency in fb
-    for i = 1:length(fb)
+% create the badnapss filter for each frequency in fb
+for i = 1:length(fb)
+    % create a bandpass filter
+    % note: center freq wb = (fb / fs) * 2*pi;
+    f = fb(i);
+    h = cos((2*pi.*f.*n)/(fs)); 
 
-        % create a bandpass filter
-        % note: center freq wb = (fb / fs) * 2*pi;
-        f = fb(i);
-        h = cos((2*pi.*f.*n)/(fs)); 
+    % compute magnitude response of bandpass filter
+    H = freqz(h, 1, w);
+    % compute scaling factor to get a maximum gain of 1
+    beta = 1 / max(abs(H));
 
-        % compute magnitude response of bandpass filter
-        H = freqz(h, 1, w);
-        % compute scaling factor to get a maximum gain of 1
-        beta = 1 / max(abs(H));
-
-        % scale the filter and store it
-        h = beta .* h;
-        hh(:,i) = h;
-    end
+    % scale the filter and store it
+    h = beta .* h;
+    hh(:,i) = h;
+end
 end
