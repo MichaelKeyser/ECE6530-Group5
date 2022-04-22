@@ -1,5 +1,5 @@
 fb = [697, 770, 852, 941, 1209, 1336, 1477, 1633];
-L = 40;
+L = 200; % this is the optimal L for fs = 8000;
 fs = 8000;
 
 hh = dtmfdesign(fb, L, fs);
@@ -9,10 +9,18 @@ f = (w / (2* pi)) * fs;
 figure
 hold on
 
+
+for i = 1:length(fb)
+    xline(fb(i), '--k')
+end
+
+yline(1/sqrt(2), '--g')
+yline(0.25, '--r')
+
 for i = 1:length(fb)
     h = hh(:,i);
     H = abs(freqz(h, 1, w));
     plot(f, H); 
 end
-% f = (w / (2* pi)) * fs;
-% figure, plot(f ,abs(H))
+
+
