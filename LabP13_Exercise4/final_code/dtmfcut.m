@@ -1,3 +1,4 @@
+% Code provided by lab manual at https://dspfirst.gatech.edu/chapters/07dtft/overview.html
 function [nstart,nstop] = dtmfcut(xx,fs)
 %DTMFCUT   find the DTMF tones within x[n]
 %  usage:

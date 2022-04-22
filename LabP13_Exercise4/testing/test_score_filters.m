@@ -1,11 +1,11 @@
-clear 
+
 fb = [697, 770, 852, 941, 1209, 1336, 1477, 1633];
 L = 200;
 fs = 8000;
 
 hh = dtmfdesign(fb, L, fs);
 
-h1 = hh(:,2);
+h1 = hh(:,7);
 
 
 % how to synthesize a signal, taken from MATLAB documentation

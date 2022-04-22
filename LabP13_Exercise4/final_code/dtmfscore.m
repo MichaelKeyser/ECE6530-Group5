@@ -5,14 +5,12 @@ function  sc = dtmfscore(xx, hh)
 % xx= input DTMF tone
 % hh= impulse response of ONE bandpass filter
 
-xx = xx * (2/max(abs(xx))); % scale to range [-2, 2]
+% scale to range [-2, 2]
+xx = xx * (2/max(abs(xx))); 
 
-y = conv(hh, xx); % filter xx
+% Apply the bandpass filter to the input tone
+y = conv(hh, xx); 
 
-% If filtered amplitude >= 59%, the signal is detected
-if max(abs(y)) >= 0.59
-    sc = 1;
-else
-    sc = 0;
-end
+% If filtered amplitude >= 59% of original, the signal is detected
+sc = double(max(abs(y)) >= 0.59);
 end
