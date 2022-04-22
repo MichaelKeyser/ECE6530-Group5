@@ -14,6 +14,7 @@ keys = [];
 for kk = 1:length(nstart)
     x_seg = xx(nstart(kk):nstop(kk));
     sc = dtmfscore(xx, hh);
+    % fix this part to iterate through each filter and check it
     if sc == 1
         keys = [keys, sc];
     end
