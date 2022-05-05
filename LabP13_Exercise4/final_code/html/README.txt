@@ -1,0 +1,1 @@
+This folder contains the html files of each function. All the functions that are invoked by another script/function have an error saying there is not enough inputs. This is because they were run when published and there were no inputs available. The functions work when integrated in dtmfrun. 

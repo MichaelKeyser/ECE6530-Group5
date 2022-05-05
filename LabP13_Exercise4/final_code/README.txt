@@ -1,0 +1,3 @@
+main.m contains the code to demonstrate the bandpass filters are correct. This lab is implemented IN THE FUNCTIONS SPECIFIED IN THE LAB HANDOUT. For example, the question asking to tune the beta parameter to get a magnitude of 1 is implemented in the dtmfdesign.m function and not separate in a script. demo.m demonstrates functionality with a random sequence of 10000 dial tones. 
+
+html contains the .html files of each script and function.
